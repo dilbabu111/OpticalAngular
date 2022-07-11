@@ -1,0 +1,33 @@
+<h1>Home</h1>
+
+<div class="play-container">
+    <p>You have clicked <span (click)="CountClick()">this</span> {{clickcounter}} times.</p>
+</div>
+
+<div class="play-container">
+<p>
+    <input type="text" [(ngModel)]="product">
+    <br>
+    <strong>You have said: </strong> {{ product }}
+
+</p>
+</div>
+
+
+<!-- ng-template is specific to Angular 8-->
+<!-- <div class="play-container" [style.background-color]="clickcounter > 3 ? 'pink' : 'lightgrey'">     -->
+<!-- <div class="play-container" [ngStyle]="{
+    'background-color': clickcounter > 3 ? 'pink' : 'lightgrey',
+    'border':           clickcounter > 3 ? '4px solid black' : 'none'
+}">     -->
+<!-- <div class="play-container" [class.success]="clickcounter > 3">     -->
+
+<div class="play-container" [ngClass]="getClasses()">    
+<ng-template [ngIf]="clickcounter > 3" [ngIfElse]="none"> 
+    <p>The clickcounter is greater than 3</p>
+</ng-template>
+<ng-template #none>
+    <p>clickcounter is lesser than or equal to 3</p>
+</ng-template>
+
+</div>

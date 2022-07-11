@@ -1,0 +1,185 @@
+<div class="row g-3">
+    <div class="col-md-3">
+      <input type="password" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="password">
+      <div class="input-group input-group-lg">
+        <div class="input-group-prepend">
+          <button (click)="toggleShow()">Detail</button>
+        </div>
+      </div>
+      <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="inputGroupSelect01">Sale Type</label>
+      </div>
+      <select class="custom-select" id="inputGroupSelect01" name="my-select-offer" [(ngModel)]="mySelectoffer"  (change)="selectOffer()">
+        <option [value]="item.id" *ngFor="let item of Offers">
+          {{item.name}}
+        </option>
+      </select>
+      </div>
+      </div>
+
+
+    <div class="col-md-3">
+        <div class="input-group input-group-lg">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-lg">Spherical</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="spherical">
+          </div>
+
+          <div class="input-group input-group-lg">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-lg">Cylinder</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="cylinder">
+          </div>
+        
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="inputGroupSelect01">Frame Type</label>
+            </div>
+
+            <select class="custom-select" id="inputGroupSelect01" name="my-select-frame" [(ngModel)]="mySelectframetype" (change)="selectFrameType()">
+              <option [value]="item.id" *ngFor="let item of frametypes">
+                  {{item.name}}
+              </option>
+          </select>
+
+
+          </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="inputGroupSelect01">Category</label>
+            </div>
+            <select class="custom-select" id="inputGroupSelect01" name="my-select-category" [(ngModel)]="mySelectcategory"  (change)="selectCategory()">
+              <option [value]="item.id" *ngFor="let item of Categories">
+                {{item.name}}
+              </option>
+            </select>
+          </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="inputGroupSelect01">Frame ID</label>
+            </div>
+            <select class="custom-select" id="inputGroupSelect01" name="my-select-frame" [(ngModel)]="mySelectframe" (change)="selectFrame($event)">
+              <option [value]="item.productid" *ngFor="let item of srvproducts">
+                {{item.productname}}
+              </option>
+            </select>
+          </div>
+
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Lens Power Type</label>
+          </div>
+          <select class="custom-select" id="inputGroupSelect01" name="my-select-lenspowertype" [(ngModel)]="mySelectlenspowertype" (change)="selectLenspowertype()">
+            <option [value]="item.id" *ngFor="let item of Lenspowertypes">
+              {{item.name}}
+            </option>
+          </select>
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="inputGroupSelect01">Coating</label>
+            </div>
+            <select class="custom-select" id="inputGroupSelect01" name="my-select-coating" [(ngModel)]="mySelectcoating" (change)="selectCoating()">
+              <option [value]="item.id" *ngFor="let item of Coatings">
+                {{item.name}}
+              </option>
+            </select>
+          </div>
+       
+
+        <button type="button" class="btn btn-primary btn-lg btn-block" (click)="getrateestimate()">Calculate</button>
+    </div>
+    <div class="col-md-3">
+      <div *ngIf="isShown" id="divshow">
+           <div class="input-group input-group-lg">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-lg">Frame</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="framerate">
+              </div>
+                
+                <div class="input-group input-group-lg">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-lg">Lens</span>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="lensrate">
+                  </div>
+                    <div class="col-md-9">
+                            <div class="input-group input-group-lg">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-lg">Spherical</span>
+                            </div>
+                            <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm"  [(ngModel)]="sphericalrate">
+                            </div>
+
+                            <div class="input-group input-group-lg">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-lg">Progressive</span>
+                            </div>
+                            <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm"  [(ngModel)]="progressiverate">
+                            </div>
+      
+
+                            <div class="input-group input-group-lg">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-lg">Coating</span>
+                            </div>
+                            <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm"  [(ngModel)]="coatingrate">
+                            </div>
+
+                            <div class="input-group input-group-lg">
+                              <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroup-sizing-lg">Cylinder</span>
+                              </div>
+                              <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm"  [(ngModel)]="cylinderrate">
+                          </div>
+                        </div>
+
+            <div class="input-group input-group-lg">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-lg">Fitting</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="fittingrate">
+                </div>
+
+                <div class="input-group input-group-lg">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-lg">Net</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="estimaterate">
+                </div>
+                </div>
+                
+                <div class="input-group input-group-lg">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-lg">Gross</span>
+                  </div>
+                  <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="grossrate">
+                  </div>
+
+
+                <div class="input-group input-group-lg">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-lg">DIS</span>
+                  </div>
+                  <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="dispercent">
+                </div>
+    
+                <div class="input-group input-group-lg">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-lg">Sale</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="salesrate">
+                </div>
+    </div>
+    <div class="col-md-3">
+
+    </div>
+  </div>
